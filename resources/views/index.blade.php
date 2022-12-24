@@ -1,5 +1,9 @@
 @extends('layout')
 
+@section('title')
+    外交部員工外派資訊系統
+@endsection
+
 @section('content')
-    <h1>外交部員工外派資訊系統</h1>
+    <h2>Test</h2>
 @endsection
