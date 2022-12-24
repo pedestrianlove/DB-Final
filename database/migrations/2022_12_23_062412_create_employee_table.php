@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('Employee', function (Blueprint $table) {
+        Schema::create('employees', function (Blueprint $table) {
             $table->string('ID', 10)
                 ->primary();
             $table->string('Name', 14);
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->string('Picture', 50);
             $table->softDeletes();
         });
-        Schema::create('Nation', function (Blueprint $table) {
+        Schema::create('nations', function (Blueprint $table) {
             $table->string('Code', 6)
                 ->primary();
             $table->string('Name', 14);
@@ -41,7 +41,7 @@ return new class extends Migration
             $table->enum('IsFriend', ['yes', 'no']);
             $table->softDeletes();
         });
-        Schema::create('Dependent', function (Blueprint $table) {
+        Schema::create('dependents', function (Blueprint $table) {
             $table->string('ID', 10);
             $table->string('Name', 14);
             $table->string('Employee_ID', 10);
@@ -53,7 +53,7 @@ return new class extends Migration
             //    ->onDelete('cascade')->onUpdate('cascade');
             $table->primary(['ID', 'Employee_ID']);
         });
-        Schema::create('Expat', function (Blueprint $table) {
+        Schema::create('expats', function (Blueprint $table) {
             $table->string('Nation_Code', 6);
             $table->string('Employee_ID', 10);
             $table->string('Ambassador_ID', 10);
@@ -63,25 +63,25 @@ return new class extends Migration
         });
 
         // Add foreign Key part
-        Schema::table('Expat', function (Blueprint $table) {
+        Schema::table('expats', function (Blueprint $table) {
             $table->foreign('Nation_Code')
                 ->references('Code')
-                ->on('Nation')
+                ->on('nations')
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('Employee_ID')
                 ->references('ID')
-                ->on('Employee')
+                ->on('employees')
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('Ambassador_ID')
                 ->references('ID')
-                ->on('Employee')
+                ->on('employees')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
 
-        Schema::table ('Dependent', function (Blueprint $table) {
+        Schema::table ('dependents', function (Blueprint $table) {
             $table->foreign('Employee_ID')
                 ->references('ID')
-                ->on('Employee')
+                ->on('employees')
                 ->onDelete('cascade')->onUpdate('cascade');
         });
     }
@@ -94,20 +94,20 @@ return new class extends Migration
     public function down()
     {
         // Removing foreign key
-        Schema::table('Expat', function (Blueprint $table) {
+        Schema::table('expats', function (Blueprint $table) {
             $table->dropForeign(['Nation_Code']);
             $table->dropForeign(['Employee_ID']);
             $table->dropForeign(['Ambassador_ID']);
         });
-        Schema::table('Dependent', function (Blueprint $table) {
+        Schema::table('dependents', function (Blueprint $table) {
             $table->dropForeign(['Employee_ID']);
         });
 
 
         // Removing all remaining keys
-        Schema::dropIfExists('Employee');
-        Schema::dropIfExists('Nation');
-        Schema::dropIfExists('Dependent');
-        Schema::dropIfExists('Expat');
+        Schema::dropIfExists('employees');
+        Schema::dropIfExists('nations');
+        Schema::dropIfExists('dependents');
+        Schema::dropIfExists('expats');
     }
 };
