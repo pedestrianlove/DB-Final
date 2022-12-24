@@ -93,6 +93,18 @@ return new class extends Migration
      */
     public function down()
     {
+        // Removing foreign key
+        Schema::table('Expat', function (Blueprint $table) {
+            $table->dropForeign(['Nation_Code']);
+            $table->dropForeign(['Employee_ID']);
+            $table->dropForeign(['Ambassador_ID']);
+        });
+        Schema::table('Dependent', function (Blueprint $table) {
+            $table->dropForeign(['Employee_ID']);
+        });
+
+
+        // Removing all remaining keys
         Schema::dropIfExists('Employee');
         Schema::dropIfExists('Nation');
         Schema::dropIfExists('Dependent');
