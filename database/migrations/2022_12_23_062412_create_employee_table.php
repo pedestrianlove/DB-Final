@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('BirthDate');
             $table->date('AcceptedDate');
             $table->string('Address', 30);
-            $table->string('Picture', 50);
+            $table->string('Picture', 50)->nullable();
             $table->softDeletes();
         });
         Schema::create('nations', function (Blueprint $table) {
@@ -47,10 +47,6 @@ return new class extends Migration
             $table->string('Employee_ID', 10);
             $table->string('Relationship', 6);
             $table->softDeletes();
-            //$table->foreign('Employee_ID')
-            //    ->references('ID')
-            //    ->on('Employee')
-            //    ->onDelete('cascade')->onUpdate('cascade');
             $table->primary(['ID', 'Employee_ID']);
         });
         Schema::create('expats', function (Blueprint $table) {

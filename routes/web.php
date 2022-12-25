@@ -1,6 +1,14 @@
 <?php
 
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\DependentController;
+use App\Http\Controllers\NationController;
+use App\Http\Controllers\ExpatController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Employee;
+use App\Models\Nation;
+use App\Models\Dependent;
+use App\Models\Expat;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,19 +27,24 @@ Route::get('/', function () {
 
 
 // Code for extra functions
-Route::get('/employee', function () {
-    return view('functions/employee');
-});
-Route::get('/nation', function () {
-    return view('functions/nation');
-});
-Route::get('/expat', function () {
-    return view('functions/expat');
-});
-Route::get('/dependent', function () {
-    return view('functions/dependent');
-});
 
-//Auth::routes();
+// Employee
+Route::get('/employee', [EmployeeController::class, 'index']);
+Route::get('/employee/{employee:ID}', [EmployeeController::class, 'show']);
+Route::post('/employee/{employee:ID}', [EmployeeController::class, 'update']);
 
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Nation
+Route::get('/nation', [NationController::class, 'index']);
+Route::get('/nation/{nation:Code}', [NationController::class, 'show']);
+Route::post('/nation/{nation:Code}', [NationController::class, 'update']);
+
+// Dependent
+Route::get('/expat', [ExpatController::class, 'index']);
+Route::get('/expat/{expat:Employee_ID}', [ExpatController::class, 'show']);
+Route::post('/expat/{expat:Employee_ID}', [ExpatController::class, 'update']);
+
+// Expat
+Route::get('/dependent', [DependentController::class, 'index']);
+Route::get('/dependent/{dependent:ID}', [DependentController::class, 'show']);
+Route::post('/dependent/{dependent:ID}', [DependentController::class, 'update']);
+
