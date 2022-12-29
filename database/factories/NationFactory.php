@@ -27,7 +27,7 @@ class NationFactory extends Factory
             "Contacts" => substr ($this->faker->lastName(), 0, 13),
             "Population" => $this->faker->randomDigit(14),
             "Area" => $this->faker->randomDigit(14),
-            "Tel" => "04-23590121",
+            "Tel" => "0423590121",
             "IsFriend" => $this->faker->randomElement(['yes', 'no'])
         ];
     }

@@ -13,6 +13,8 @@ class Employee extends Model
     public $timestamps = false;
     protected $primaryKey = 'ID';
     public $incrementing = false;
+    protected $keyType = 'string';
+    protected $fillable = ['ID', 'Name', 'Rank', 'Salary', 'Tel', 'Sex', 'BirthDate', 'AcceptedDate', 'Address', 'Picture'];
 
     /*
     public function scopeFilter($query, array $filters)

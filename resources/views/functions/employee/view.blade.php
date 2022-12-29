@@ -11,7 +11,7 @@
         @if ($employees->count())
         @foreach ($employees as $employee)
             <article>
-                <img src="https://picsum.photos/600/400/?random" alt="Sample photo">
+                <img src="{{($employee->Picture == "https://picsum.photos/600/400/?random")? "https://picsum.photos/600/400/?random" : \Storage::url ($employee->Picture) }}" alt="Sample photo">
                 <div class="text">
                     <h3>{{$employee->Name}}</h3>
                     <p>Rank: {{$employee->Rank}}</p>

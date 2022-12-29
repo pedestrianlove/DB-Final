@@ -11,10 +11,10 @@
         @if ($dependents->count())
         @foreach ($dependents as $dependent)
             <article>
-                <img src="https://picsum.photos/600/400/?random" alt="Sample photo">
+                <img src="{{$dependent->Employee->Picture}}" alt="Sample photo">
                 <div class="text">
                     <h3>{{$dependent->Name}}</h3>
-                    <p>Related Employee: {{$dependent->employee->Name}}</p>
+                    <p>Related Employee: {{$dependent->Employee->Name}}</p>
                     <p>Relationship: {{$dependent->Relationship}}</p>
                     <button>More</button>
                 </div>

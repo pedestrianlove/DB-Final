@@ -10,7 +10,7 @@
         @if ($expats->count())
         @foreach ($expats as $expat)
             <article>
-                <img src="https://picsum.photos/600/400/?random" alt="Sample photo">
+                <img src="{{$expat->Employee->Picture}}" alt="Sample photo">
                 <div class="text">
                     <h3>{{$expat->Employee->Name}}</h3>
                     <p>Rank: {{$expat->Employee->Rank}}</p>

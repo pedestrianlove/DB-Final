@@ -24,7 +24,7 @@ return new class extends Migration
             $table->date('BirthDate');
             $table->date('AcceptedDate');
             $table->string('Address', 30);
-            $table->string('Picture', 50)->nullable();
+            $table->string('Picture', 255)->nullable();
             $table->softDeletes();
         });
         Schema::create('nations', function (Blueprint $table) {
@@ -42,19 +42,19 @@ return new class extends Migration
             $table->softDeletes();
         });
         Schema::create('dependents', function (Blueprint $table) {
+            $table->id('dependent_id');
             $table->string('ID', 10);
             $table->string('Name', 14);
             $table->string('Employee_ID', 10);
             $table->string('Relationship', 6);
             $table->softDeletes();
-            $table->primary(['ID', 'Employee_ID']);
         });
         Schema::create('expats', function (Blueprint $table) {
+            $table->id('expat_id');
             $table->string('Nation_Code', 6);
             $table->string('Employee_ID', 10);
             $table->string('Ambassador_ID', 10);
             $table->date('StartDate');
-            $table->primary(['Nation_Code', 'Employee_ID']);
             $table->softDeletes();
         });
 
