@@ -13,7 +13,9 @@ class Nation extends Model
     public $timestamps = false;
 
     protected $primaryKey = 'Code';
+    protected $keyType = 'string';
     public $incrementing = false;
+    protected $fillable = ['Code', 'Name', 'Continent', 'Leader', 'FMinister', 'Contacts', 'Population', 'Area', 'Tel', 'IsFriend'];
 
 
 }

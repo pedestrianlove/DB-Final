@@ -10,7 +10,7 @@
         @if ($nations->count())
         @foreach ($nations as $nation)
             <article>
-                <img src="https://picsum.photos/600/400/?random" alt="Sample photo">
+                <x-dynamic-component component="flag-country-{{ strtolower(substr($nation->Code, 0, 2)) }}" />
                 <div class="text">
                     <h3>{{$nation->Name}}</h3>
                     <p>Leader: {{$nation->Leader}}</p>

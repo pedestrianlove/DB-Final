@@ -12,6 +12,8 @@ class Expat extends Model
     use softDeletes;
     public $timestamps = false;
 
+
+
     public function Employee()
     {
         return $this->belongsTo(Employee::class, 'Employee_ID');

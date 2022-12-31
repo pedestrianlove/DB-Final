@@ -16,7 +16,7 @@
                     <h3>{{$dependent->Name}}</h3>
                     <p>Related Employee: {{$dependent->Employee->Name}}</p>
                     <p>Relationship: {{$dependent->Relationship}}</p>
-                    <button>More</button>
+                    <button onclick="location.href='/dependent/{{$dependent->dependent_id}}'">More</button>
                 </div>
             </article>
         @endforeach

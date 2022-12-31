@@ -18,8 +18,9 @@ class DependentFactory extends Factory
     public function definition()
     {
         return [
-            "ID" => ucfirst($this->faker->randomLetter()).$this->faker->randomDigit(9),
+            "ID" => ucfirst($this->faker->randomLetter()).$this->faker->regexify('[0-9]{9}'),
             "Name" => substr($this->faker->lastName(), 0, 14),
+            "Sex" => $this->faker->randomElement(["M", "F"]),
             "Employee_ID" => Employee::inRandomOrder()->first()->ID,
             "Relationship" => substr($this->faker->randomElement(["Father", "Mother", "Broth.", "Sister", "Son", "Daugh."]), 0, 14),
         ];

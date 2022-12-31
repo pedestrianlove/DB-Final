@@ -11,9 +11,11 @@ class Dependent extends Model
     use HasFactory;
     use softDeletes;
     public $timestamps = false;
+    protected $fillable = ['Employee_ID', 'ID', 'Name', 'Sex', 'Relationship'];
 
-    public function employee()
+    public function Employee()
     {
         return $this->belongsTo(Employee::class, 'Employee_ID');
     }
+
 }

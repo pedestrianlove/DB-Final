@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout', ['key' => $employee->ID])
 
 @section('title', '人員資料表')
 
@@ -43,8 +43,8 @@
                 <option value="M" selected>男</option>
                 <option value="F">女</option>
             @else
-                <option value="M">Male</option>
-                <option value="F" selected>Woman</option>
+                <option value="M">男</option>
+                <option value="F" selected>女</option>
             @endif
         </select>
             @error('Sex')
@@ -74,7 +74,6 @@
 
         </div>
     </form>
-    <button class="button-17" role="button" onclick="location.href=window.location.href + '/delete'">刪除 </button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 </div>
 
 

@@ -15,7 +15,7 @@
                     <h3>{{$expat->Employee->Name}}</h3>
                     <p>Rank: {{$expat->Employee->Rank}}</p>
                     <p>Nation: {{$expat->Nation->Name}}</p>
-                    <button>More</button>
+                    <button onclick="location.href='/expat/{{$expat->expat_id}}'">More</button>
                 </div>
             </article>
         @endforeach

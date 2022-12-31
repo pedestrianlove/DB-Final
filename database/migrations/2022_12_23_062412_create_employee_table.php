@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('Code', 6)
                 ->primary();
             $table->string('Name', 14);
-            $table->string('Continent', 6);
+            $table->string('Continent', 14);
             $table->string('Leader', 14);
             $table->string('FMinister', 14);
             $table->string('Contacts', 14);
@@ -45,6 +45,7 @@ return new class extends Migration
             $table->id('dependent_id');
             $table->string('ID', 10);
             $table->string('Name', 14);
+            $table->enum('Sex', ['M', 'F']);
             $table->string('Employee_ID', 10);
             $table->string('Relationship', 6);
             $table->softDeletes();
@@ -72,6 +73,7 @@ return new class extends Migration
                 ->references('ID')
                 ->on('employees')
                 ->onDelete('cascade')->onUpdate('cascade');
+            $table->unique (['Nation_Code', 'Employee_ID']);
         });
 
         Schema::table ('dependents', function (Blueprint $table) {
@@ -79,6 +81,7 @@ return new class extends Migration
                 ->references('ID')
                 ->on('employees')
                 ->onDelete('cascade')->onUpdate('cascade');
+            $table->unique (['ID', 'Employee_ID']);
         });
     }
 
@@ -89,21 +92,9 @@ return new class extends Migration
      */
     public function down()
     {
-        // Removing foreign key
-        Schema::table('expats', function (Blueprint $table) {
-            $table->dropForeign(['Nation_Code']);
-            $table->dropForeign(['Employee_ID']);
-            $table->dropForeign(['Ambassador_ID']);
-        });
-        Schema::table('dependents', function (Blueprint $table) {
-            $table->dropForeign(['Employee_ID']);
-        });
-
-
-        // Removing all remaining keys
-        Schema::dropIfExists('employees');
-        Schema::dropIfExists('nations');
         Schema::dropIfExists('dependents');
         Schema::dropIfExists('expats');
+        Schema::dropIfExists('employees');
+        Schema::dropIfExists('nations');
     }
 };

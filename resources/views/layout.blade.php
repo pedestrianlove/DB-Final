@@ -7,10 +7,10 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-@if ('/' != request()->path() )
-    <fieldset>
-@else
+@if ('/' == request()->path())
     <fieldset style="max-width: 48rem">
+@else
+    <fieldset>
 @endif
     <legend class="text-sm">功能選單</legend>
     <button class="button-17" role="button" onclick="location.href='/'">首頁 </button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -19,15 +19,17 @@
     <button class="button-17" role="button" onclick="location.href='/expat'">派駐資料表 </button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     <button class="button-17" role="button" onclick="location.href='/dependent'">眷屬資料表 </button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     <button class="button-17" role="button" onclick="window.print()">列印 </button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    @if ('/' != request()->path() )
+    @if ('/' != request()->path() && !isset ($key))
         <button class="button-17" role="button" onclick="location.href=window.location.href + '/create'">新增 </button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+    @elseif ('/' != request()->path() && isset ($key))
+        <button class="button-17" role="button" onclick="location.href=window.location.href + '/delete'">刪除 </button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     @endif
 
 </fieldset>
 <h1>
     @yield('title')
 </h1>
-@if ('/' != request()->path() )
+@if ('/' != request()->path()  && !isset($key))
     <div class="row">
         <div class="column">@yield('extra_left')</div>
         <div class="column">
@@ -41,6 +43,7 @@
                 </div>
             </form>
         </div>
+        <br>
         <div class="column">@yield('extra_right')</div>
     </div>
 @endif
@@ -49,10 +52,11 @@
 
 <div>
     @yield('content')
+
 </div>
-    @if (session ()->has ('success'))
-        <div class="success_msg">
-            {{ session ()->get ('success') }}
+    @if (session ()->flash('success'))
+        <div class="alert alert-success" role="alert">
+            {{ session ('success') }}
         </div>
     @endif
 </body>
