@@ -54,7 +54,7 @@ return new class extends Migration
             $table->id('expat_id');
             $table->string('Nation_Code', 6);
             $table->string('Employee_ID', 10);
-            $table->string('Ambassador_ID', 10);
+            $table->string('Ambassador_Name', 14);
             $table->date('StartDate');
             $table->softDeletes();
         });
@@ -66,10 +66,6 @@ return new class extends Migration
                 ->on('nations')
                 ->onDelete('cascade')->onUpdate('cascade');
             $table->foreign('Employee_ID')
-                ->references('ID')
-                ->on('employees')
-                ->onDelete('cascade')->onUpdate('cascade');
-            $table->foreign('Ambassador_ID')
                 ->references('ID')
                 ->on('employees')
                 ->onDelete('cascade')->onUpdate('cascade');

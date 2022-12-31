@@ -44,7 +44,7 @@ Route::get('/nation/{nation:Code}', [NationController::class, 'show']);
 Route::post('/nation/{nation:Code}', [NationController::class, 'update']);
 Route::get('/nation/{nation:Code}/delete', [NationController::class, 'delete']);
 
-// Dependent
+// Dependent (In progress)
 Route::get('/expat', [ExpatController::class, 'index']);
 Route::get('/expat/create', [ExpatController::class, 'show_create']);
 Route::post('/expat/create', [ExpatController::class, 'create']);

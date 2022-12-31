@@ -7,7 +7,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
-@if ('/' == request()->path())
+@if ('/' == request()->path() || isset($create))
     <fieldset style="max-width: 48rem">
 @else
     <fieldset>
@@ -19,9 +19,9 @@
     <button class="button-17" role="button" onclick="location.href='/expat'">派駐資料表 </button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     <button class="button-17" role="button" onclick="location.href='/dependent'">眷屬資料表 </button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     <button class="button-17" role="button" onclick="window.print()">列印 </button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    @if ('/' != request()->path() && !isset ($key))
+    @if ('/' != request()->path() && !isset ($key) && !isset ($create))
         <button class="button-17" role="button" onclick="location.href=window.location.href + '/create'">新增 </button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-    @elseif ('/' != request()->path() && isset ($key))
+    @elseif ('/' != request()->path() && isset ($key) && !isset ($create))
         <button class="button-17" role="button" onclick="location.href=window.location.href + '/delete'">刪除 </button>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
     @endif
 
@@ -54,7 +54,7 @@
     @yield('content')
 
 </div>
-    @if (session ()->flash('success'))
+    @if (session ()->has('success'))
         <div class="alert alert-success" role="alert">
             {{ session ('success') }}
         </div>

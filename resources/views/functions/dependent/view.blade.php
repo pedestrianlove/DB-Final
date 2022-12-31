@@ -11,7 +11,7 @@
         @if ($dependents->count())
         @foreach ($dependents as $dependent)
             <article>
-                <img src="{{$dependent->Employee->Picture}}" alt="Sample photo">
+                <img src="{{($dependent->Employee->Picture == "https://picsum.photos/600/400/?random")? "https://picsum.photos/600/400/?random" : \Storage::url ($dependent->Employee->Picture) }}" alt="Sample photo">
                 <div class="text">
                     <h3>{{$dependent->Name}}</h3>
                     <p>Related Employee: {{$dependent->Employee->Name}}</p>

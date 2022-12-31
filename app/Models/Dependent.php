@@ -11,6 +11,8 @@ class Dependent extends Model
     use HasFactory;
     use softDeletes;
     public $timestamps = false;
+
+    protected $primaryKey = 'dependent_id';
     protected $fillable = ['Employee_ID', 'ID', 'Name', 'Sex', 'Relationship'];
 
     public function Employee()

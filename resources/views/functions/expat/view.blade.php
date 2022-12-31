@@ -10,11 +10,13 @@
         @if ($expats->count())
         @foreach ($expats as $expat)
             <article>
-                <img src="{{$expat->Employee->Picture}}" alt="Sample photo">
+                <x-dynamic-component component="flag-country-{{ strtolower(substr($expat->Nation->Code, 0, 2)) }}" />
+                <img src="{{($expat->Employee->Picture == "https://picsum.photos/600/400/?random")? "https://picsum.photos/600/400/?random" : \Storage::url ($expat->Employee->Picture) }}" alt="Sample photo">
                 <div class="text">
                     <h3>{{$expat->Employee->Name}}</h3>
                     <p>Rank: {{$expat->Employee->Rank}}</p>
                     <p>Nation: {{$expat->Nation->Name}}</p>
+                    <p>Ambassador: {{$expat->Ambassador_Name}}</p>
                     <button onclick="location.href='/expat/{{$expat->expat_id}}'">More</button>
                 </div>
             </article>

@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout', ['key'=> $dependent->dependent_id])
 
 @section('title', '眷屬資料表')
 

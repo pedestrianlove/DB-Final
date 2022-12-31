@@ -42,7 +42,7 @@ class NationController extends Controller
         }
         $nation->save();
         session()->flash ('success', 'Nation created successfully.');
-        return redirect('/nation');
+        return redirect('/nation/'.$nation->Code);
     }
     public function update (Nation $nation) {
         $attributes = request()->validate([

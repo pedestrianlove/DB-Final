@@ -12,6 +12,8 @@ class Expat extends Model
     use softDeletes;
     public $timestamps = false;
 
+    protected $primaryKey = 'expat_id';
+    protected $fillable = ['Nation_Code', 'Employee_ID', 'Ambassador_Name', 'StartDate'];
 
 
     public function Employee()

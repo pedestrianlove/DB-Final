@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout', ['create' => 1])
 
 @section('title', '人員資料表')
 
@@ -66,7 +66,7 @@
             @error('Picture')
             <p class="error-format">{{ $message }}</p>
             @enderror
-            <input type="submit" value="Submit">
+            <input type="submit" value="Create">
         </div>
     </form>
 

@@ -21,7 +21,7 @@ class ExpatFactory extends Factory
         return [
             "Nation_Code" => Nation::inRandomOrder()->first()->Code,
             "Employee_ID" => Employee::inRandomOrder()->first()->ID,
-            "Ambassador_ID" => Employee::inRandomOrder()->first()->ID,
+            "Ambassador_Name" => substr ($this->faker->name(),0, 14),
             "StartDate" => $this->faker->date()
         ];
     }

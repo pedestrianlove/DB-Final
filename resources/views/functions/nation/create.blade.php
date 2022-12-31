@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layout', ['create' => 1])
 @section('title', '國家資料表')
 
 @section('content')
@@ -60,7 +60,7 @@
             <p class="error-format">{{ $message }}</p>
             @enderror
 
-            <input type="submit" value="Update">
+            <input type="submit" value="Create">
         </div>
     </form>
 @endsection

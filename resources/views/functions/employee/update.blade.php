@@ -70,7 +70,7 @@
             @error('Picture')
             <p class="error-format">{{ $message }}</p>
             @enderror
-        <input type="submit" value="update">
+        <input type="submit" value="Update">
 
         </div>
     </form>
