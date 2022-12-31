@@ -16,13 +16,14 @@ class Employee extends Model
     protected $keyType = 'string';
     protected $fillable = ['ID', 'Name', 'Rank', 'Salary', 'Tel', 'Sex', 'BirthDate', 'AcceptedDate', 'Address', 'Picture'];
 
-    public function scopeFilter($query, $filters)
+    public function scopeSearch($query, array $filters)
     {
-        if (isset ($filters['search'])) {
-            return $query
-                ->where('ID', 'like', '%' . request ('search') . '%')
-                ->orWhere('Name', 'like', '%' . request ('search') . '%');
-        }
+       $query -> when ($filters['search'] ?? false, fn ($query, $search) =>
+            $query
+                -> where ('ID', 'like', '%'.$search.'%')
+                -> orWhere ('Name', 'like', '%'.$search.'%')
+                -> orWhere ('Rank', 'like', '%'.$search.'%')
+       );
     }
 
 }

@@ -17,5 +17,13 @@ class Nation extends Model
     public $incrementing = false;
     protected $fillable = ['Code', 'Name', 'Continent', 'Leader', 'FMinister', 'Contacts', 'Population', 'Area', 'Tel', 'IsFriend'];
 
-
+    public function scopeSearch($query, array $filters)
+    {
+        $query -> when ($filters['search'] ?? false, fn ($query, $search) =>
+        $query
+            -> where ('Code', 'like', '%'.$search.'%')
+            -> orWhere ('Name', 'like', '%'.$search.'%')
+            -> orWhere ('Continent', 'like', '%'.$search.'%')
+        );
+    }
 }

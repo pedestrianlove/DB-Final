@@ -10,7 +10,7 @@ class NationController extends Controller
 {
     public function index () {
         return view('functions.nation.view', [
-            'nations' => Nation::all()
+            'nations' => Nation::search(request(['search']))->get(),
         ]);
     }
 

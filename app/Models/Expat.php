@@ -25,5 +25,18 @@ class Expat extends Model
     {
         return $this->belongsTo(Nation::class, 'Nation_Code');
     }
-
+    public function scopeSearch($query, array $filters)
+    {
+        $query -> when ($filters['search'] ?? false, fn ($query, $search) =>
+        $query
+            -> where ('Nation_Code', 'like', '%'.$search.'%')
+            -> orWhere ('Employee_ID', 'like', '%'.$search.'%')
+            -> orWhereHas ('Nation', fn ($query) =>
+                $query -> where ('Name', 'like', '%'.$search.'%')
+            )
+            -> orWhereHas ('Employee', fn ($query) =>
+                $query -> where ('Name', 'like', '%'.$search.'%')
+            )
+        );
+    }
 }

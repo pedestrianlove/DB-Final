@@ -15,7 +15,7 @@ class EmployeeController extends Controller
     public function index()
     {
         return view('functions.employee.view', [
-            'employees' => Employee::filter(request()->all())->get()
+            'employees' => Employee::search(request(['search']))->get(),
         ]);
     }
 

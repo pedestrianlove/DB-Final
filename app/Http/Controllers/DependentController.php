@@ -10,7 +10,7 @@ class DependentController extends Controller
 {
     public function index () {
         return view('functions.dependent.view', [
-            'dependents' => Dependent::all()
+            'dependents' => Dependent::search(request(['search']))->get(),
         ]);
     }
 

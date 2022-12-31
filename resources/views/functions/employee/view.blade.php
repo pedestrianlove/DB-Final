@@ -14,16 +14,26 @@
                 <img src="{{($employee->Picture == "https://picsum.photos/600/400/?random")? "https://picsum.photos/600/400/?random" : \Storage::url ($employee->Picture) }}" alt="Sample photo">
                 <div class="text">
                     <h3>{{$employee->Name}}</h3>
+                    <p>ID: {{$employee->ID}}</p>
                     <p>Rank: {{$employee->Rank}}</p>
                     <button onclick="location.href='/employee/{{$employee->ID}}'">More</button>
                 </div>
             </article>
         @endforeach
+    </main>
         @else
-            <p>No records.</p>
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
         @endif
 
 
-    </main>
 
 @endsection

@@ -8,7 +8,7 @@ class ExpatController extends Controller
 {
     public function index () {
         return view('functions.expat.view', [
-            'expats' => Expat::all()
+            'expats' => Expat::search(request(['search']))->get(),
         ]);
     }
 

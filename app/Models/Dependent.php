@@ -19,5 +19,15 @@ class Dependent extends Model
     {
         return $this->belongsTo(Employee::class, 'Employee_ID');
     }
-
+    public function scopeSearch($query, array $filters)
+    {
+        $query -> when ($filters['search'] ?? false, fn ($query, $search) =>
+        $query
+            -> where ('ID', 'like', '%'.$search.'%')
+            -> orWhere ('Name', 'like', '%'.$search.'%')
+            -> orWhereHas ('Employee', fn ($query) =>
+                $query -> where ('Name', 'like', '%'.$search.'%')
+            )
+        );
+    }
 }
