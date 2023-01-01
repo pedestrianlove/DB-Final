@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Dependent;
+use App\Models\Employee;
 use Illuminate\Validation\Rule;
+use Livewire\Component;
 
 class DependentController extends Controller
 {
@@ -20,12 +22,15 @@ class DependentController extends Controller
         ]);
     }
     public function show_create() {
-        return view('functions.dependent.create');
+        return view('functions.dependent.create', [
+            'employees' => Employee::all()
+        ]);
     }
 
     public function create () {
         $attributes = request()->validate([
-            'ID' => ['required', 'max:10', 'min:10'],
+            //'ID' => ['required', 'max:10', 'min:10'],
+            'ID' => ['required', 'max:10', 'min:10', 'unique:dependents,ID,NULL,dependent_id,Employee_ID,' . request('Employee_ID')],
             'Employee_ID' => ['required', 'max:10', 'min:10', 'exists:employees,ID'],
             'Name' => ['required', 'max:14'],
             'Sex' => ['required', Rule::in(['M', 'F'])],

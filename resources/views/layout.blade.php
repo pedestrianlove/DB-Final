@@ -29,7 +29,7 @@
 <h1>
     @yield('title')
 </h1>
-@if ('/' != request()->path()  && !isset($key))
+@if ('/' != request()->path()  && !isset($key) && !isset($create))
     <div class="row">
         <div class="column">@yield('extra_left')</div>
         <div class="column">

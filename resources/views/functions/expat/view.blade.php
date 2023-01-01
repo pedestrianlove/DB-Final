@@ -22,7 +22,16 @@
             </article>
         @endforeach
         @else
-            <p>No records.</p>
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
+            <img src="{{\Storage::url("public/img/nothing.gif")}}" alt="No records.">
         @endif
 
     </main>

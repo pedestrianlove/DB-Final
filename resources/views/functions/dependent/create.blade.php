@@ -3,17 +3,33 @@
 @section('title', '眷屬資料表')
 
 @section('content')
+
     <form action="#" method="POST">
         @csrf
         <div class="entry-wrapper">
             <label class="entry-text" for="employee_id">員工身分證字號:</label>
-            <input class="entry-input" type="text" id="employee_id" name="Employee_ID" value="{{ old('Employee_ID') }}">
+            <select class="entry-input" name="Employee_ID">
+                @foreach ($employees as $employee)
+                    <option
+                        @if (old('Employee_ID') == $employee->ID)
+                            selected
+                        @endif
+                        value="{{ $employee->ID }}"
+                    >
+                        {{ $employee->ID.': '.$employee->Name}}
+                    </option>
+                @endforeach
+
+            </select>
+
             @error('Employee_ID')
             <p class="error-format">{{ $message }}</p>
             @enderror
 
+
             <label class="entry-text" for="family_id">眷屬身份證字號:</label>
             <input class="entry-input" type="text" id="family_id" name="ID" value="{{ old('ID')}}">
+
             @error('ID')
             <p class="error-format">{{ $message }}</p>
             @enderror
@@ -49,5 +65,17 @@
         </div>
     </form>
 
+<script>
+    document.getElementById('employee_id').addEventListener('onBlur', function() {
+        var employeeId = this.value;
 
+        // Send an AJAX request to the server to fetch the Employee_Name value
+        fetch('/employees/Name?id=' + employeeId)
+            .then(response => response.text())
+            .then(name => {
+                // Update the Employee_Name field with the fetched value
+                document.getElementById('employee_name').value = name;
+            });
+    });
+</script>
 @endsection

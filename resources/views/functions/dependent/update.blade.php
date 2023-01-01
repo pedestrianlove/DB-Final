@@ -11,6 +11,8 @@
             @error('Employee_ID')
             <p class="error-format">{{ $message }}</p>
             @enderror
+            <label class="entry-text" for="employee_id">員工姓名:</label>
+            <input class="entry-input" type="text" id="employee_name" name="Employee_Name" value="{{$dependent->Employee->Name}}" disabled="disabled">
 
         <label class="entry-text" for="family_id">眷屬身份證字號:</label>
         <input class="entry-input" type="text" id="family_id" name="ID" value="{{$dependent->ID}}" disabled="disabled">

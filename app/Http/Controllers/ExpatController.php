@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use App\Models\Expat;
+use App\Models\Nation;
 
 class ExpatController extends Controller
 {
@@ -19,12 +21,15 @@ class ExpatController extends Controller
     }
 
     public function show_create () {
-        return view('functions.expat.create');
+        return view('functions.expat.create', [
+            'employees' => Employee::all(),
+            'nations' => Nation::all(),
+        ]);
     }
 
     public function create () {
         $attributes = request()->validate([
-            'Nation_Code' => ['required', 'regex:/^[A-Za-z]{2}[0-9]{4}$/', 'exists:nations,Code'],
+            'Nation_Code' => ['required', 'regex:/^[A-Za-z]{2}[0-9]{4}$/', 'exists:nations,Code', 'unique:expats,Nation_Code,NULL,expat_id,Employee_ID,' . request('Employee_ID')],
             'Employee_ID' => ['required', 'max:10', 'min:10', 'exists:employees,ID'],
             'Ambassador_Name' => ['required', 'max:14'],
             'StartDate' => ['required', 'date'],

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\EmployeeForm;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DependentController;
 use App\Http\Controllers\NationController;
@@ -44,7 +45,7 @@ Route::get('/nation/{nation:Code}', [NationController::class, 'show']);
 Route::post('/nation/{nation:Code}', [NationController::class, 'update']);
 Route::get('/nation/{nation:Code}/delete', [NationController::class, 'delete']);
 
-// Dependent
+// Expat
 Route::get('/expat', [ExpatController::class, 'index']);
 Route::get('/expat/create', [ExpatController::class, 'show_create']);
 Route::post('/expat/create', [ExpatController::class, 'create']);
@@ -52,7 +53,7 @@ Route::get('/expat/{expat:expat_id}', [ExpatController::class, 'show']);
 Route::post('/expat/{expat:expat_id}', [ExpatController::class, 'update']);
 Route::get('/expat/{expat:expat_id}/delete', [ExpatController::class, 'delete']);
 
-// Expat
+// Dependent
 Route::get('/dependent', [DependentController::class, 'index']);
 Route::get('/dependent/create', [DependentController::class, 'show_create']);
 Route::post('/dependent/create', [DependentController::class, 'create']);
