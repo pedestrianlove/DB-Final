@@ -3,7 +3,22 @@
 @section('title', '眷屬資料表')
 
 @section('extra_left')
-   <h2>Total {{ $dependents->count() }} records</h2>
+    @php
+        $male = 0; $female = 0;
+        $maleAge = 0; $femaleAge = 0;
+        foreach ($dependents as $dependent) {
+            if ($dependent->Sex == 'M') {
+                $male++;
+                $maleAge += $dependent->Age();
+            } else {
+                $female++;
+                $femaleAge += $dependent->Age();
+            }
+        }
+    @endphp
+    <h2>男性人數: {{$male}} / 女性人數: {{$female}}</h2>
+    <h2>男性平均年齡: {{($male)? round ($maleAge/$male, 2) : 0 }} / 女性平均年齡: {{($female)? round ($femaleAge/$female, 2) : 0}}</h2>
+
 @endsection
 
 @section('content')
