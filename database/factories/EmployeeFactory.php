@@ -22,7 +22,7 @@ class EmployeeFactory extends Factory
         return [
             'ID' => ucfirst($this->faker->randomLetter() . $this->faker->unique()->randomNumber(9)),
             'Name' => $this->faker->lastName(),
-            'Rank' => $this->faker->randomElement(['Private', 'Corporal', 'Sergeant', 'Lieutenant', 'Captain', 'Major', 'Colonel']),
+            'Rank' => $this->faker->randomElement(['一職等', '二職等', '三職等', '四職等', '五職等', '六職等', '七職等', '八職等', '九職等', '十職等']),
             'Salary' => $this->faker->randomNumber(5),
             'Tel' => "0423590121",
             'Sex' => $this->faker->randomElement(['M', 'F']),

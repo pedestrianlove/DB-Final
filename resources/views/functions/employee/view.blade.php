@@ -3,7 +3,26 @@
 @section('title', '人員資料表')
 
 @section('extra_left')
-   <h2>Total {{ $employees->count() }} records</h2>
+    @php
+        $totalEmployee = $employees->count ();
+        if ($totalEmployee) {
+            // average salary
+            $totalSalary = 0;
+            foreach ($employees as $employee)
+                $totalSalary += $employee->Salary;
+            $averageSalary = $totalSalary / $totalEmployee;
+
+            // average age
+            $totalAge = 0;
+            foreach ($employees as $employee)
+                $totalAge += ($employee->Age());
+            $averageAge = $totalAge / $totalEmployee;
+        }
+   @endphp
+    <h2> Total {{ $totalEmployee }} records</h2>
+    @if ($totalEmployee)
+        <h2> 平均收入: {{ $averageSalary }}$ &nbsp&nbsp 平均年齡: {{ $averageAge }}</h2>
+    @endif
 @endsection
 
 @section('content')

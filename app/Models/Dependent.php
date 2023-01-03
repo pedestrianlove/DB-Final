@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Dependent extends Model
 {
@@ -29,5 +30,9 @@ class Dependent extends Model
                 $query -> where ('Name', 'like', '%'.$search.'%')
             )
         );
+    }
+
+    public function Age () {
+        return Carbon::parse ($this->BirthDate)->age;
     }
 }

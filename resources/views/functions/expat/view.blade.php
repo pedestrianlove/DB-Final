@@ -2,7 +2,30 @@
 @section('title', "派駐資料表")
 
 @section('extra_left')
-   <h2>Total {{ $expats->count() }} records</h2>
+    @php
+        $totalExpat = $expats ->count();
+        $totalArea = 0;
+        $totalEmployee = 0;
+        $nationList = [];
+        $employeeList = [];
+        if ($totalExpat) {
+            foreach($expats as $expat) {
+                if (! in_array ($expat->Nation->Code, $nationList)) {
+                    $nationList[] = $expat->Nation->Code;
+                    $totalArea += $expat->Nation->Area;
+                }
+                if (! in_array ($expat->Employee->ID, $employeeList)) {
+                    $employeeList[] = $expat->Employee->ID;
+                    $totalEmployee ++;
+                }
+            }
+        }
+    @endphp
+   <h2>Total {{ $totalExpat }} records</h2>
+    @if ($totalExpat)
+        <h3>員工人數： {{ $totalEmployee }}</h3>
+        <h3>單位面積的員工人數 {{ $totalEmployee/$totalArea }}</h3>
+    @endif
 @endsection
 
 @section('content')

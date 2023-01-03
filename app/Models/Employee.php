@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Carbon\Carbon;
 
 class Employee extends Model
 {
@@ -25,5 +26,10 @@ class Employee extends Model
                 -> orWhere ('Rank', 'like', '%'.$search.'%')
        );
     }
+
+    public function Age () {
+        return Carbon::parse ($this->BirthDate)->age;
+    }
+
 
 }

@@ -1,10 +1,10 @@
 <?php
 
-use App\Http\Livewire\EmployeeForm;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\DependentController;
 use App\Http\Controllers\NationController;
 use App\Http\Controllers\ExpatController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Employee;
 use App\Models\Nation;
@@ -22,9 +22,7 @@ use App\Models\Expat;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-});
+Route::get('/', [IndexController::class, 'index']);
 
 
 // Code for extra functions

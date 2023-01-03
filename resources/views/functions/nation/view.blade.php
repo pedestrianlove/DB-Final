@@ -2,7 +2,24 @@
 @section('title', '國家資料表')
 
 @section('extra_left')
+    @php
+        $totalFriends = 0;
+        $totalPopulation_F = 0;
+        $totalEnemies = 0;
+        $totalPopulation_E = 0;
+        foreach ($nations as $nation)
+            if ($nation->IsFriend == 'yes') {
+                $totalFriends++;
+                $totalPopulation_F += $nation->Population;
+            } else {
+                $totalEnemies++;
+                $totalPopulation_E += $nation->Population;
+            }
+
+    @endphp
    <h2>Total {{ $nations->count() }} records</h2>
+        <h2>邦交國數量: {{ $totalFriends }}, 人口: {{ $totalPopulation_F }}</h2>
+        <h2>非邦交國數量: {{$totalEnemies}}, 人口: {{ $totalPopulation_E }}</h2>
 @endsection
 
 @section('content')

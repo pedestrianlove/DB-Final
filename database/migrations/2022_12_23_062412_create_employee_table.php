@@ -45,6 +45,7 @@ return new class extends Migration
             $table->id('dependent_id');
             $table->string('ID', 10);
             $table->string('Name', 14);
+            $table->date ('BirthDate');
             $table->enum('Sex', ['M', 'F']);
             $table->string('Employee_ID', 10);
             $table->string('Relationship', 6);
